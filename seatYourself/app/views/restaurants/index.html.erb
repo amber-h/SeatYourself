@@ -1,0 +1,11 @@
+
+
+<ul>
+	<% @restaurants.each do |restaurant| %>
+	<li><p><%= link_to restaurant[:name], restaurant %> </p>
+		<p>Address: <%= restaurant[:addr] %></p> 
+		<p>Phone: <%= restaurant[:phone] %></p>
+		<p><%= image_tag(restaurant[:picture]) %> 
+	</li>
+	<% end %>
+</ul>
