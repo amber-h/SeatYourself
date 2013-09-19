@@ -1,9 +1,12 @@
 class RestaurantsController < ApplicationController
-	before_filter :get_product, :only => [:show, :edit, :destroy, :update]
+
+	before_filter :get_restaurant, :only => [:show, :edit, :destroy, :update]
 
 	def index
-		@restaurants = Restaurant.all
+		# @restaurants = Restaurant.all
 
+		@restaurants = Restaurant.search(params[:search])
+		
 		respond_to do |format|
 			format.html
 			format.json { render json: @restaurants}
@@ -11,7 +14,6 @@ class RestaurantsController < ApplicationController
 	end
 
 	def show
-		@restaurant = Restaurant.find(params[:id])
 
 		respond_to do |format|
 			format.html
@@ -43,7 +45,7 @@ class RestaurantsController < ApplicationController
 	        format.json { head :no_content }
 	  	else 
 	  		format.html { render action: "edit" }
-	        format.json { render json: @product.errors, status: :unprocessable_entity }
+	        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
 	  	end
 	end
 

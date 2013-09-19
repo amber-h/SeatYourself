@@ -1,11 +1,30 @@
 
 
-<ul>
-	<% @restaurants.each do |restaurant| %>
-	<li><p><%= link_to restaurant[:name], restaurant %> </p>
-		<p>Address: <%= restaurant[:addr] %></p> 
-		<p>Phone: <%= restaurant[:phone] %></p>
-		<p><%= image_tag(restaurant[:picture]) %> 
-	</li>
+<div id="find-restaurant-box">
+	
+	<% form_tag restaurants_path, :method => 'get' do %>
+	  	<p>
+	    <%= text_field_tag :search, params[:search] %>
+	    <%= submit_tag "Search", :name => nil %>
+	  	</p>
 	<% end %>
-</ul>
+
+</div>
+
+
+
+	<ul>
+	<div class="restaurant-row">
+		<% @restaurants.each do |restaurant| %>
+		<p><p><%= link_to restaurant[:name], restaurant %> </p>
+			<p>Address: <%= restaurant[:addr] %></p> 
+			<p>Phone: <%= restaurant[:phone] %></p>
+			<p><%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
+		</p>
+		<% end %>
+	</div>
+	</ul>
+
+
+	
+

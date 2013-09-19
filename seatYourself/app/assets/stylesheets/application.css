@@ -19,16 +19,21 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+h1, h2, h3, p {
+	margin: 10px;
+}
+
  
 #container
 {
+position: relative;
 width: 90%;
 margin: 10px auto;
 background-color: #fff;
 color: #333;
 border: 1px solid gray;
 line-height: 130%;
-padding: 10px;
+padding: 20px;
 border-radius: 15px;
 }
 
@@ -71,25 +76,43 @@ padding: 1em;
 max-width: 900px;
 }
 
-#find-restaurant-box{
-	width: 600px;
-	height: 200px;
-	background-color: #66CCFF;
-	border-radius: 15px;
-}
+
 
 #footer
 {
-clear: both;
-margin: 0;
-padding: .5em;
+/*margin: 0;
+padding: .5em;*/
 color: #333;
 background-color: #ddd;
 border-top: 1px solid gray;
-bottom: 0%;
+bottom: 0;
 width: 100%;
 position: absolute;
 }
 
 #leftnav p, #rightnav p { margin: 0 0 1em 0; }
 #content h2 { margin: 0 0 .5em 0; }
+
+#find-restaurant-box{
+	width: 600px;
+	height: 200px;
+	background-color: #66CCFF;
+	border-radius: 15px;
+	margin: 10px;
+}
+
+.restaurant-row{
+	width: 600px;
+	height: 100px;
+	position: absolute;
+	background-color: #B0B0B0;
+	margin: 10px;
+	border-radius: 15px;
+}
+
+
+
+/*.restaurant_icon{
+	float: right;
+	border: 1px solid black;
+}*/
