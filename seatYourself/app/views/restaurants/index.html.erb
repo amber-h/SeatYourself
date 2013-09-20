@@ -1,13 +1,32 @@
 
 
 <div id="find-restaurant-box">
-	
-	<% form_tag restaurants_path, :method => 'get' do %>
+
+	<h1>Find a Restaurant</h1>
+
+	<div class="outer-search-form">
+	<%= form_tag restaurants_path, :method => 'get', :class => 'search-form' do %>
 	  	<p>
 	    <%= text_field_tag :search, params[:search] %>
+		</p>
+		<p>
 	    <%= submit_tag "Search", :name => nil %>
 	  	</p>
 	<% end %>
+
+
+	<%#= form_tag restaurants_path, :method => 'get', :class => 'search-form' do %>
+	  	<p>
+	    <%#= text_field_tag :search, params[:search] %>
+		</p>
+		<p>
+	    <%#= submit_tag "Search", :addr => nil %>
+	  	</p>
+	<%# end %>
+
+	</div>
+
+
 
 </div>
 

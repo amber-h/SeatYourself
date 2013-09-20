@@ -2,11 +2,18 @@
 
 
 <ul>
-<p>	<p><%= @restaurant[:name] %> </p>
+<p>	<h1><%= @restaurant[:name] %> </h1>
 	<p>Address: <%= @restaurant[:addr] %></p> 
 	<p>Phone: <%= @restaurant[:phone] %> </p>
 	<p><%= image_tag(@restaurant[:picture]) %> </p>
 </p>
 </ul>
 
+<h3>Make Your Reservation</h3>
+<%= form_tag restaurants_path, :method => 'get' do %>
 
+	<p>What day would you like to come in?</p>
+	<p><%= select_date(date = Date.current, prefix: :date) %></p>
+
+<p><%= submit_tag "Submit", :name => nil %></p>
+<% end %>

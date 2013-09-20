@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
 		# @restaurants = Restaurant.all
 
 		@restaurants = Restaurant.search(params[:search])
-		
+
 		respond_to do |format|
 			format.html
 			format.json { render json: @restaurants}
@@ -57,6 +57,10 @@ class RestaurantsController < ApplicationController
 	      format.json { head :no_content }
 	    end
   	end
+
+  	def search
+  		@restaurant = Restaurant.search(params[:search])
+	end
 
   	private
 	  def get_restaurant
