@@ -10,10 +10,11 @@
 </ul>
 
 <h3>Make Your Reservation</h3>
-<%= form_tag restaurants_path, :method => 'get' do %>
+<%= form_tag reservations_path, :method => 'get' do %>
 
 	<p>What day would you like to come in?</p>
 	<p><%= select_date(date = Date.current, prefix: :date) %></p>
+	<p><%= select_time Time.now, prefix: :time %></p>
 
 <p><%= submit_tag "Submit", :name => nil %></p>
 <% end %>
