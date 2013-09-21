@@ -11,5 +11,5 @@ class Restaurant < ActiveRecord::Base
 	    find(:all)
 	  end
 	end
-
+	
 end

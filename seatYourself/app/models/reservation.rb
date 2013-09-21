@@ -3,4 +3,14 @@ class Reservation < ActiveRecord::Base
 
   belongs_to :restaurant
   belongs_to :user
+
+  validates :partySize,
+		:numericality => { :only_integer => true, :greater_than => 0 }
+
+
+	before_save(:on => :create) do
+		self.restaurant.seats -= self.partySize
+		self.restaurant.save!
+	end
+
 end
