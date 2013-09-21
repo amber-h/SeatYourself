@@ -1,12 +1,13 @@
 <h3>Make Your Reservation</h3>
 <p> Make your reservation for <%= @restaurant.name %></p>
-<br><p>What day would you like to come in?</p>
+<p> Hours of operation between <%= @restaurant.open_hour %>:00 and <%= @restaurant.close_hour %>:00 </p>
+<br><p>What day and time would you like to come in?</p>
 
 <%= form_for [@restaurant, @reservation] do |f|%>
 
 	<p>
 		<%= f.label :reservation_date %>
-		<%= f.datetime_select :reservation_date %>
+		<%= f.datetime_select(:reservation_date , :minute_step => 30) %>
 	</p>
 
 	<p> 
