@@ -1,6 +1,3 @@
-
-
-
 <ul>
 <p>	<h1><%= @restaurant[:name] %> </h1>
 	<p>Address: <%= @restaurant[:addr] %></p> 
@@ -9,12 +6,5 @@
 </p>
 </ul>
 
-<h3>Make Your Reservation</h3>
-<%= form_tag reservations_path, :method => 'get' do %>
-
-	<p>What day would you like to come in?</p>
-	<p><%= select_date(date = Date.current, prefix: :date) %></p>
-	<p><%= select_time Time.now, prefix: :time %></p>
-
-<p><%= submit_tag "Submit", :name => nil %></p>
-<% end %>
+<p>Make a reservation</p>
+<%= link_to "Make a reservation", new_restaurant_reservation_url(@restaurant.id) %>

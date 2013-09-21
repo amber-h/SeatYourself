@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
 
 	before_filter :get_reservation, :only => [:show, :edit, :destroy, :update]
+	before_filter :get_restaurant
 
 	def index
-
 		@reservations = Reservation.all
 
 		respond_to do |format|
@@ -21,11 +21,17 @@ class ReservationsController < ApplicationController
 		end
 	end
 
-	def show
+	def create
+		@reservation = @restaurant.reservations.build(params[:reservation])
 
+		if @reservation.save 
+			redirect_to restaurants_url #change that to redirect to the users show page to display their reservations
+		else
+			render :new
+		end
 	end
 
-	def edit
+	def show
 
 	end
 
@@ -33,13 +39,13 @@ class ReservationsController < ApplicationController
 
 	end
 
-	def update
-
-	end
+	private
+		def get_reservation
+	    	@reservation = Reservation.find(params[:id])
+	  	end
 
 	private
-	  def get_restaurant
-	    @reservation = Reservation.find(params[:id])
-	  end
-
+		def get_restaurant
+	    	@restaurant = Restaurant.find(params[:restaurant_id])
+	  	end
 end
