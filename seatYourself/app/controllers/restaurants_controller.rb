@@ -1,9 +1,9 @@
 class RestaurantsController < ApplicationController
-
+	before_filter :ensure_logged_in, :only => [:show]
 	before_filter :get_restaurant, :only => [:show, :edit, :destroy, :update]
 
 	def index
-		# @restaurants = Restaurant.all
+		@restaurants = Restaurant.all
 
 		@restaurants = Restaurant.search(params[:search])
 
@@ -35,7 +35,17 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		@restaurant = Restaurant.create(params[:restaurant])
+		@restaurant = Restaurant.new(params[:restaurant])
+
+	    respond_to do |format|
+	      if @restaurant.save
+	        format.html { redirect_to @restaurant, notice: 'Product was successfully created.' }
+	        format.json { render json: @restaurant, status: :created, location: @restaurant }
+	      else
+	        format.html { render action: "new" }
+	        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+	      end
+	    end
 	end
 
 	def update 
@@ -60,6 +70,10 @@ class RestaurantsController < ApplicationController
 
   	def search
   		@restaurant = Restaurant.search(params[:search])
+	end
+
+	def manage_restaurant
+
 	end
 
   	private

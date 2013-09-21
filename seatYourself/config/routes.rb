@@ -1,6 +1,8 @@
 SeatYourself::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
+  get 'restaurants/manage', to: 'restaurants#manage_restaurant'
+
   resources :restaurants 
   resources :reservations
   resources :users
