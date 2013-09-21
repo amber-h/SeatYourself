@@ -28,6 +28,9 @@
         <div class="field">
           	<%= f.password_field :password_confirmation, {placeholder: 'Password Confirmation'}%>
         </div>
+        <div class="field">
+          <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+        </div>
 
        <div class="actions-bigger-btn"><%=submit_tag 'Sign Up' %></div>
        
