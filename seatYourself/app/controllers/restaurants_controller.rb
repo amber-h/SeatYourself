@@ -1,6 +1,9 @@
 class RestaurantsController < ApplicationController
 	before_filter :ensure_logged_in, :only => [:show]
+	before_filter :load_user, :only => [:new, :create]
 	before_filter :get_restaurant, :only => [:show, :edit, :destroy, :update]
+
+	
 
 	def index
 		@restaurants = Restaurant.all
@@ -35,7 +38,17 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		@restaurant = Restaurant.new(params[:restaurant])
+		# @restaurant = Restaurant.new(params[:restaurant])
+		
+		# @restaurant = Restaurant.new(:user_id => @user.id)
+		@restaurant = @user.restaurants.build(params[:restaurant])
+		@restaurant.user_id = current_user.id
+
+		if @restaurant.save
+  			redirect_to restaurants_manage_path, notice: "Restaurant added successfully"
+  		else
+  			render :action => :show
+  		end
 
 	    respond_to do |format|
 	      if @restaurant.save
@@ -80,5 +93,10 @@ class RestaurantsController < ApplicationController
 	  def get_restaurant
 	    @restaurant = Restaurant.find(params[:id])
 	  end
+	private
+	  def load_user
+  		@user= User.find(current_user.id)
+  	  end
+
 
 end

@@ -26,6 +26,10 @@ h1, h2, h3, p {
 	margin: 10px;
 }
 
+body{
+	background-color: #F0F0F0 ;
+}
+
 h1{
 	font-size: 1.5em;
 	padding: 10px;
@@ -117,7 +121,8 @@ color: #333;
 background-color: #ddd;
 border-top: 1px solid gray;
 bottom: 0;
-width: 100%;
+width: 100%;/*
+position: absolute;*/
 }
 
 #leftnav p, #rightnav p { margin: 0 0 1em 0; }
