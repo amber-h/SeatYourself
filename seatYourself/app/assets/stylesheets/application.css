@@ -56,15 +56,22 @@ p{
 	color: #808080;
 }
 
+span:nth-child(even) {
+   background-color: #D8D8D8;
+}
+span:nth-child(odd) {
+   background-color: #F0F0F0;
+}
+
  
 #container
 {
-position: relative;
+/*position: relative;*/
 width: 90%;
 margin: 10px auto;
 background-color: #fff;
 color: #333;
-border: 1px solid gray;
+border: 1px solid lightgrey;
 line-height: 130%;
 padding: 20px;
 border-radius: 15px;
@@ -76,7 +83,7 @@ margin-top: 100px;
 /*background-color: #003366;*/
 padding: .5em;
 background-color: #ddd;
-border-bottom: 1px solid gray;
+border-bottom: 1px solid lightgrey;
 width: 100%;
 margin: 0 auto;
 position: fixed;
@@ -109,9 +116,9 @@ padding: 1em;
 #content
 {
 margin-left: 200px;
-border-left: 1px solid gray;
+border-left: 1px solid lightgrey;
 margin-right: 200px;
-border-right: 1px solid gray;
+border-right: 1px solid lightgrey;
 padding: 1em;
 max-width: 900px;
 }
@@ -156,8 +163,8 @@ position: fixed;
 
 .outer-search-form{
 	width: 560px;
-	height: 100px;
-	position: absolute;/*
+	height: 100px;/*
+	position: absolute;*//*
 	background-color: #B3D88C;*/
 	/*background-color: #3399FF;*/
 	background-color: #33CCFF;

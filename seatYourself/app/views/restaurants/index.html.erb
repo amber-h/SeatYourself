@@ -32,17 +32,17 @@
 
 
 
-	<ul>
+	<!-- <ul> -->
 	<div class="restaurant-row">
 		<% @restaurants.each do |restaurant| %>
-		<p><p><%= link_to restaurant[:name], restaurant %> </p>
+	<span><p><%= link_to restaurant[:name], restaurant %> </p>
 			<p>Address: <%= restaurant[:addr] %></p> 
 			<p>Phone: <%= restaurant[:phone] %></p>
 			<p><%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
-		</p>
+	</span>	
 		<% end %>
 	</div>
-	</ul>
+	<!-- </ul> -->
 
 
 	
