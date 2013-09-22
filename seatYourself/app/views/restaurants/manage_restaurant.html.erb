@@ -10,6 +10,7 @@
 		<p><p><%= link_to restaurant[:name], restaurant %> </p>
 			<p>Address: <%= restaurant[:addr] %></p> 
 			<p>Phone: <%= restaurant[:phone] %></p>
+			<p><%= link_to restaurant[:website], restaurant[:website], :target => "_blank"  %></p>
 			<p><%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
 		</p>
 		<% end %>
