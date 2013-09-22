@@ -23,6 +23,7 @@ class ReservationsController < ApplicationController
 
 	def create
 		@reservation = @restaurant.reservations.build(params[:reservation])
+		@reservation.user_id = current_user.id
 
 		if @reservation.save 
 			redirect_to restaurants_url #change that to redirect to the users show page to display their reservations

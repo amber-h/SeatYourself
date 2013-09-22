@@ -39,20 +39,13 @@ class RestaurantsController < ApplicationController
 
 	def create
 		# @restaurant = Restaurant.new(params[:restaurant])
-		
 		# @restaurant = Restaurant.new(:user_id => @user.id)
 		@restaurant = @user.restaurants.build(params[:restaurant])
-		@restaurant.user_id = current_user.id
-
-		if @restaurant.save
-  			redirect_to restaurants_manage_path, notice: "Restaurant added successfully"
-  		else
-  			render :action => :show
-  		end
+		#@restaurant.user_id = current_user.id
 
 	    respond_to do |format|
 	      if @restaurant.save
-	        format.html { redirect_to @restaurant, notice: 'Product was successfully created.' }
+	        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
 	        format.json { render json: @restaurant, status: :created, location: @restaurant }
 	      else
 	        format.html { render action: "new" }
@@ -86,7 +79,8 @@ class RestaurantsController < ApplicationController
 	end
 
 	def manage_restaurant
-
+		@users_restaurants = current_user.restaurants 
+		#shows the current users restaurants only
 	end
 
   	private

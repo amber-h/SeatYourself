@@ -8,3 +8,15 @@
 
 <p>Make a reservation</p>
 <%= link_to "Make a reservation", new_restaurant_reservation_url(@restaurant.id) %>
+
+<% user_isowner = false %>
+<% for i in 0..current_user.restaurants.size-1 %>
+	<% if current_user.restaurants[i].name == @restaurant.name %>
+		<% user_isowner = true %>
+	<% end %>
+<% end %>
+
+
+<% if user_isowner %>
+	<p> <%= link_to "Edit Restaurant", edit_restaurant_path %> </p>
+<% end %>

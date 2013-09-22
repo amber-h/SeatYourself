@@ -3,3 +3,15 @@
 	<% if current_user.role == 'owner' %>
 	   <p> <%= link_to "Add Restaurant", new_restaurant_path %> </p>
 	<% end %>
+
+	<ul>
+	<div class="restaurant-row">
+		<% @users_restaurants.each do |restaurant| %>
+		<p><p><%= link_to restaurant[:name], restaurant %> </p>
+			<p>Address: <%= restaurant[:addr] %></p> 
+			<p>Phone: <%= restaurant[:phone] %></p>
+			<p><%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
+		</p>
+		<% end %>
+	</div>
+	</ul>
