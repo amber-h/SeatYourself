@@ -1,0 +1,18 @@
+<h3>Edit Reservation</h3>
+<p> Edit your reservation for <%= @reservation.restaurant.name %></p>
+<p> Hours of operation between <%= @reservation.restaurant.open_hour %>:00 and <%= @reservation.restaurant.close_hour %>:00 </p>
+
+<%= form_for [@reservation.restaurant, @reservation] do |f|%>
+
+	<p>
+		<%= f.label :reservation_date %>
+		<%= f.datetime_select(:reservation_date , :minute_step => 30) %>
+	</p>
+
+	<p> 
+		<%= f.label "Seats"%> <%= f.text_field :partySize %> 
+	</p>
+		
+	<p><%= f.submit "Submit"%></p>
+
+<% end %> 

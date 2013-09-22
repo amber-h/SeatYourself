@@ -11,5 +11,13 @@ class Restaurant < ActiveRecord::Base
 	    find(:all)
 	  end
 	end
-	
+
+	def seats_available
+		 taken = 0
+		 self.reservations.each do |r|
+		 	taken += r.partySize
+		 end
+		 available = self.seats-taken
+		 return available
+	end
 end

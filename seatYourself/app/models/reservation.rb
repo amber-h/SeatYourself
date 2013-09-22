@@ -11,12 +11,12 @@ class Reservation < ActiveRecord::Base
 	validate :date_is_valid
 
 	def partySize_is_valid
-    	errors.add(:partySize, "Not enough palces for that party size on this day and time") if
+    	errors.add(:partySize,"Not enough palces for that party size on this day and time") if
     	!partySize_check
   	end
 
   	def date_is_valid
-    	errors.add(:reservation_date, "The restaurant is not open at this time") if
+    	errors.add(:reservation_date,"The restaurant is not open at this time") if
     	reservation_date.hour < self.restaurant.open_hour.to_i || reservation_date.hour > self.restaurant.close_hour.to_i
   	end
 

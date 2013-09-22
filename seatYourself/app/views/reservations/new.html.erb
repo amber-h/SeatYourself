@@ -1,9 +1,21 @@
 <h3>Make Your Reservation</h3>
 <p> Make your reservation for <%= @restaurant.name %></p>
 <p> Hours of operation between <%= @restaurant.open_hour %>:00 and <%= @restaurant.close_hour %>:00 </p>
+<p> Seats Available: <%= @restaurant.seats_available %></p>
 <br><p>What day and time would you like to come in?</p>
 
 <%= form_for [@restaurant, @reservation] do |f|%>
+
+	 <% if @reservation.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @reservation.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 	<p>
 		<%= f.label :reservation_date %>
@@ -16,4 +28,4 @@
 		
 	<p><%= f.submit "Submit"%></p>
 
-<% end %> 
+<% end %>
