@@ -29,6 +29,7 @@ class RestaurantsController < ApplicationController
 	end
 
 	def new
+		@category = Category.new
 		@restaurant = Restaurant.new
 
 		respond_to do |format|
@@ -38,10 +39,12 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
+		debugger
 		# @restaurant = Restaurant.new(params[:restaurant])
 		# @restaurant = Restaurant.new(:user_id => @user.id)
 		@restaurant = @user.restaurants.build(params[:restaurant])
-		#@restaurant.user_id = current_user.id
+		#@restaurant.categories = @category.cuisine
+		#@restaurant.user_id = current_user.id 
 
 	    respond_to do |format|
 	      if @restaurant.save
