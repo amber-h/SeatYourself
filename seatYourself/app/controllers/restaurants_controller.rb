@@ -17,7 +17,8 @@ class RestaurantsController < ApplicationController
 	end
 
 	def show
-
+		@json = Restaurant.all.to_gmaps4rails
+		
 		respond_to do |format|
 			format.html
 			format.json { render json: @restaurants}
