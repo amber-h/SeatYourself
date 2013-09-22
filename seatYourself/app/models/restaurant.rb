@@ -24,8 +24,16 @@ class Restaurant < ActiveRecord::Base
 	end
 
 	def gmaps4rails_address
-		#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-  		"#{self.street}, #{self.city}, #{self.country}" 
+  		self.addr
+  		# "#{self.street}, #{self.city}, #{self.country}" 
 	end
-	
+
+	def gmaps4rails_marker_picture
+    {
+	    "picture" => "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|FF0000|000000", # image_path column has to contain something like '/assets/my_pic.jpg'.
+	    "width" => 32, #beware to resize your pictures properly
+	    "height" => 32 #beware to resize your pictures properly
+	}
+	end
+
 end

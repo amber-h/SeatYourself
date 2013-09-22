@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
 	before_filter :load_user, :only => [:new, :create]
 	before_filter :get_restaurant, :only => [:show, :edit, :destroy, :update]
 
-	
+	ActionController::Base.helpers.asset_path('fastfood.png')
 
 	def index
 		@restaurants = Restaurant.all
@@ -17,8 +17,15 @@ class RestaurantsController < ApplicationController
 	end
 
 	def show
-		@json = Restaurant.all.to_gmaps4rails
-		
+		@json = Restaurant.find(params[:id]).to_gmaps4rails do |restaurant, marker|
+		  	marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant })
+		    marker.title "#{restaurant.name}"
+		    # marker.json({ :population => city.population})
+		    marker.picture({:picture => 'fastfood.png',
+		                    :width => 32,
+		                    :height => 32})
+		end
+
 		respond_to do |format|
 			format.html
 			format.json { render json: @restaurants}
