@@ -55,9 +55,9 @@ class RestaurantsController < ApplicationController
 	end
 
 	def update 
-
+		
 	  	if @restaurant.update_attributes(params[:restaurant])
-	  		format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
+	  		format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully updated.' }
 	        format.json { head :no_content }
 	  	else 
 	  		format.html { render action: "edit" }

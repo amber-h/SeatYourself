@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
 
 	before_filter :get_reservation, :only => [:show, :edit, :destroy, :update]
-	before_filter :get_restaurant, :except => [:manage_reservation, :show, :edit]
+	before_filter :get_restaurant, :except => [:manage_reservation, :show, :edit, :update]
 
 	def index
 		@reservations = Reservation.all
@@ -37,15 +37,23 @@ class ReservationsController < ApplicationController
 	end
 
 	def destroy
+		@reservation.destroy
+
+	  	respond_to do |format|
+	      format.html { redirect_to restaurants_url }
+	      format.json { head :no_content }
+	    end
 
 	end
 
 	def edit
+		@restaurant = @reservation.restaurant
 
 	end
 
-	def update 
-
+	def update  
+		@restaurant = @reservation.restaurant
+		
 	  	if @reservation.update_attributes(params[:reservation])
 	  		format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
 	        format.json { head :no_content }
@@ -56,7 +64,7 @@ class ReservationsController < ApplicationController
 	end
 
 	def manage_reservation
-		# @users_reservations = current_user.reservations 
+		@users_reservations = current_user.reservations 
 		#shows the current users restaurants only
 	end
 

@@ -36,8 +36,5 @@ class Reservation < ActiveRecord::Base
      		return false
      	end
   	end
-
-
-
 end
 

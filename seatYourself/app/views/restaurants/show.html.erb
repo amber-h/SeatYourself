@@ -25,5 +25,6 @@
 	<% end %>
 	</ul>
 	<p> <%= link_to "Edit Restaurant", edit_restaurant_path %> </p>
+	<%= link_to "Delete", @restaurant, :confirm => "Are you sure you want to delete this restaurant?", :method => :delete %>
 <% end %>
 

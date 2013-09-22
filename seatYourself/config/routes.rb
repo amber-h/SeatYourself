@@ -5,10 +5,9 @@ SeatYourself::Application.routes.draw do
   get 'reservations/manage', to: 'reservations#manage_reservation'
 
   resources :restaurants do
-    resources :reservations, :only => [:create, :new, :index, :destroy]   
+    resources :reservations, :only => [:create, :new, :index, :destroy, :edit, :update]   
   end
   
-
   resources :restaurants 
   resources :reservations
   resources :users
