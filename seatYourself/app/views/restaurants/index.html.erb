@@ -28,22 +28,33 @@
 
 
 
-</div>
-
-
-
-	<ul>
-	<div class="restaurant-row">
-		<% @restaurants.each do |restaurant| %>
+<ul>
+<div class="restaurant-row">
+	<% @restaurants.each do |restaurant| %>
 		<p><p><%= link_to restaurant[:name], restaurant %> </p>
-			<p>Address: <%= restaurant[:addr] %></p> 
-			<p>Phone: <%= restaurant[:phone] %></p>
-			<p><%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
-		</p>
+		<p>Address: <%= restaurant[:addr] %></p> 
+		<p>Phone: <%= restaurant[:phone] %></p>
+		<% restaurant.categories.each do |category| %>
+			<p><%= category.cuisine %></p>
 		<% end %>
+		<p><%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
+		</p>
+	<% end %>
 	</div>
-	</ul>
+</ul>
 
+<%= form_tag({}, {:method => :get}) do %>
+	<div id="rightnav">
+	 <% for category in Category.all %>
+	    <div>
+	      <%= check_box_tag "category[]", category.id %>
+	      <%= category.cuisine %>
+	 <%end%>
+	</div>
+	<%= submit_tag %>
+<% end %>
+
+<%= params %>
 
 	
 

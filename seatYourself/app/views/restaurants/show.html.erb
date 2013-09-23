@@ -3,6 +3,9 @@
 	<p>Address: <%= @restaurant[:addr] %></p> 
 	<p>Phone: <%= @restaurant[:phone] %> </p>
 	<p><%= link_to @restaurant[:website],'http://' + @restaurant[:website], :target => "_blank"  %></p>
+	<% @restaurant.categories.each do |category| %>
+		<p><%= category.cuisine %></p>
+	<% end %>
 	<p><%= image_tag(@restaurant[:picture]) %> </p>
 </p>
 </ul>

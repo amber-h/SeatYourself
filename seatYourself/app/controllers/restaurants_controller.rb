@@ -1,14 +1,16 @@
 class RestaurantsController < ApplicationController
-	before_filter :ensure_logged_in, :only => [:show]
+	before_filter :ensure_logged_in, :except => [:show, :index]
 	before_filter :load_user, :only => [:new, :create]
 	before_filter :get_restaurant, :only => [:show, :edit, :destroy, :update]
 
 	ActionController::Base.helpers.asset_path('fastfood.png')
 
 	def index
-		@restaurants = Restaurant.all
-
-		@restaurants = Restaurant.search(params[:search])
+		#@restaurants = Restaurant.all
+		#@restaurants = Restaurant.search(params[:search])
+		#@restaurants = Restaurant.includes(:categories).where('categories.id in (?)',params[:category])
+		
+		@restaurants = Restaurant.display_by_categories(params[:category])
 
 		respond_to do |format|
 			format.html
@@ -36,12 +38,27 @@ class RestaurantsController < ApplicationController
 
 	end
 
+
+	def update 
+		respond_to do |format|
+		  	if @restaurant.update_attributes(params[:restaurant])
+		  		format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully updated.' }
+		        format.json { head :no_content }
+		  	else 
+		  		format.html { render action: "edit" }
+		        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+		  	end
+	  	end
+	end
+
 	def new
+		@category = Category.new
 		@restaurant = Restaurant.new
 
 		respond_to do |format|
 			format.html
 			format.json { render json: @restaurants}
+		ensure_logged_in
 		end
 	end
 
@@ -49,7 +66,8 @@ class RestaurantsController < ApplicationController
 		# @restaurant = Restaurant.new(params[:restaurant])
 		# @restaurant = Restaurant.new(:user_id => @user.id)
 		@restaurant = @user.restaurants.build(params[:restaurant])
-		#@restaurant.user_id = current_user.id
+		#@restaurant.categories = @category.cuisine
+		#@restaurant.user_id = current_user.id 
 
 	    respond_to do |format|
 	      if @restaurant.save
@@ -62,17 +80,6 @@ class RestaurantsController < ApplicationController
 	    end
 	end
 
-	def update 
-		
-	  	if @restaurant.update_attributes(params[:restaurant])
-	  		format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully updated.' }
-	        format.json { head :no_content }
-	  	else 
-	  		format.html { render action: "edit" }
-	        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
-	  	end
-	end
-
 	def destroy
   		@restaurant.destroy
 
@@ -81,10 +88,6 @@ class RestaurantsController < ApplicationController
 	      format.json { head :no_content }
 	    end
   	end
-
-  	def search
-  		@restaurant = Restaurant.search(params[:search])
-	end
 
 	def manage_restaurant
 		@users_restaurants = current_user.restaurants 
@@ -99,6 +102,4 @@ class RestaurantsController < ApplicationController
 	  def load_user
   		@user= User.find(current_user.id)
   	  end
-
-
 end

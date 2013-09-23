@@ -1,8 +1,8 @@
 <ul>
 <% current_user.reservations.each do |reservation| %>
 		<li>
-			<p> <%= link_to "Change Reservation", edit_reservation_path(reservation.restaurant.id) %> </p>
-			<p> <%= link_to "Cancel Reservation", edit_reservation_path(reservation.restaurant.id) %> </p>
+			<p> <%= link_to "Change Reservation", edit_reservation_path(reservation.id) %> </p>
+			<p> <%= link_to "Cancel Reservation", edit_reservation_path(reservation.id) %> </p>
 			<p>Restaurant Name: <%= reservation.restaurant.name %></p> 
 			<p>Reservation Date: <%= reservation[:reservation_date] %></p> 
 			<p>Party Size: <%= reservation[:partySize] %></p>
