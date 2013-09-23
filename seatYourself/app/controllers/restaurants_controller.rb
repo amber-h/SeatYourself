@@ -28,6 +28,19 @@ class RestaurantsController < ApplicationController
 
 	end
 
+
+	def update 
+		respond_to do |format|
+		  	if @restaurant.update_attributes(params[:restaurant])
+		  		format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully updated.' }
+		        format.json { head :no_content }
+		  	else 
+		  		format.html { render action: "edit" }
+		        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+		  	end
+	  	end
+	end
+
 	def new
 		@category = Category.new
 		@restaurant = Restaurant.new
@@ -35,11 +48,11 @@ class RestaurantsController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.json { render json: @restaurants}
+		ensure_logged_in
 		end
 	end
 
 	def create
-		debugger
 		# @restaurant = Restaurant.new(params[:restaurant])
 		# @restaurant = Restaurant.new(:user_id => @user.id)
 		@restaurant = @user.restaurants.build(params[:restaurant])
@@ -55,17 +68,6 @@ class RestaurantsController < ApplicationController
 	        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
 	      end
 	    end
-	end
-
-	def update 
-		
-	  	if @restaurant.update_attributes(params[:restaurant])
-	  		format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully updated.' }
-	        format.json { head :no_content }
-	  	else 
-	  		format.html { render action: "edit" }
-	        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
-	  	end
 	end
 
 	def destroy
@@ -94,6 +96,4 @@ class RestaurantsController < ApplicationController
 	  def load_user
   		@user= User.find(current_user.id)
   	  end
-
-
 end

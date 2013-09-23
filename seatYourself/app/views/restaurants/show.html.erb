@@ -2,6 +2,9 @@
 <p>	<h1><%= @restaurant[:name] %> </h1>
 	<p>Address: <%= @restaurant[:addr] %></p> 
 	<p>Phone: <%= @restaurant[:phone] %> </p>
+	<% @restaurant.categories.each do |category| %>
+		<p><%= category.cuisine %></p>
+	<% end %>
 	<p><%= image_tag(@restaurant[:picture]) %> </p>
 </p>
 </ul>
