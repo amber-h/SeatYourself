@@ -8,18 +8,22 @@ class Restaurant < ActiveRecord::Base
 
 	def self.search(search)
 	  if search
-	    find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+	    #find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
+	    where('name LIKE ?', "%#{search}%")
 	  else
 	    find(:all)
 	  end
 	end
 
 	def seats_available
-		 taken = 0
-		 self.reservations.each do |r|
-		 	taken += r.partySize
-		 end
-		 available = self.seats-taken
-		 return available
+		 return self.reservations.partySize
+	end
+
+	def self.display_by_categories(category_ids)
+			if category_ids
+				self.includes(:categories).where('categories.id in (?)', category_ids)
+			else
+				 find(:all)
+			end
 	end
 end

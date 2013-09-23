@@ -25,30 +25,106 @@
 	# 	picture: 'http://www.torontolife.com/daily/wp-content/uploads/2012/06/rawlicious-logo.jpg',
 	# 	seats: '100'
 	# 	)
-
-
 	Category.create(
-		cuisine: "Italian"
+		cuisine: "Caribbean"
 		)
 
 
 	Category.create(
-		cuisine: "Meditteranean"
+		cuisine: "Chicken"
 	)
 
 
 	Category.create(
-		cuisine: "Asian"
+		cuisine: "Chinese"
 		)
 
 
+	Category.create(
+		cuisine: "Deli"
+		)
+
+
+	Category.create(
+		cuisine: "Fish and Seafood"
+		)
+
+	Category.create(
+		cuisine: "French"
+		)
+
+	Category.create(
+		cuisine: "Gluten Free"
+		)
+
+	Category.create(
+		cuisine: "Greek"
+		)
+	Category.create(
+		cuisine: "Grillhouse"
+		)
+	Category.create(
+		cuisine: "Halal"
+		)
 	Category.create(
 		cuisine: "Healthy"
 		)
-
-
 	Category.create(
-		cuisine: "Steak"
+		cuisine: "Indian"
+		)
+	Category.create(
+		cuisine: "International"
+		)
+	Category.create(
+		cuisine: "Italian"
+		)
+	Category.create(
+		cuisine: "Japanese"
+		)
+	Category.create(
+		cuisine: "Korean"
+		)
+	Category.create(
+		cuisine: "Kosher"
+		)
+	Category.create(
+		cuisine: "Malaysian"
+		)
+	Category.create(
+		cuisine: "Mandarin"
+		)
+	Category.create(
+		cuisine: "Mediterranean"
+		)
+	Category.create(
+		cuisine: "Mexican"
+		)
+	Category.create(
+		cuisine: "Pan-Asian"
+		)
+	Category.create(
+		cuisine: "Persian"
+		)
+	Category.create(
+		cuisine: "Pizza"
+		)
+	Category.create(
+		cuisine: "Soups"
+		)
+	Category.create(
+		cuisine: "Steakhouse"
+		)
+	Category.create(
+		cuisine: "Sushi"
+		)
+	Category.create(
+		cuisine: "Thai"
+		)
+	Category.create(
+		cuisine: "Vegan"
+		)
+	Category.create(
+		cuisine: "Vegetarian"
 		)
 
 

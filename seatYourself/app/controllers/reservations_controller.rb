@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-
+	before_filter :ensure_logged_in
 	before_filter :get_reservation, :only => [:show, :edit, :destroy, :update]
 	before_filter :get_restaurant, :except => [:manage_reservation, :show, :edit, :update]
 
@@ -47,20 +47,21 @@ class ReservationsController < ApplicationController
 	end
 
 	def edit
-		@restaurant = @reservation.restaurant
-
+		#@restaurant = @reservation.restaurant
 	end
 
 	def update  
 		@restaurant = @reservation.restaurant
 		
-	  	if @reservation.update_attributes(params[:reservation])
-	  		format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
-	        format.json { head :no_content }
-	  	else 
-	  		format.html { render action: "edit" }
-	        format.json { render json: @reservation.errors, status: :unprocessable_entity }
-	  	end
+		respond_to do |format|
+		  	if @reservation.update_attributes(params[:reservation])
+		  		format.html { redirect_to reservations_manage_path, notice: 'Reservation was successfully updated.' }
+		        format.json { head :no_content }
+		  	else 
+		  		format.html { render action: "edit" }
+		        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+		  	end
+		end
 	end
 
 	def manage_reservation

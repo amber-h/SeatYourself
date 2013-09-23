@@ -1,14 +1,16 @@
 class RestaurantsController < ApplicationController
-	before_filter :ensure_logged_in, :only => [:show]
+	before_filter :ensure_logged_in, :except => [:show, :index]
 	before_filter :load_user, :only => [:new, :create]
 	before_filter :get_restaurant, :only => [:show, :edit, :destroy, :update]
 
 	
 
 	def index
-		@restaurants = Restaurant.all
-
-		@restaurants = Restaurant.search(params[:search])
+		#@restaurants = Restaurant.all
+		#@restaurants = Restaurant.search(params[:search])
+		#@restaurants = Restaurant.includes(:categories).where('categories.id in (?)',params[:category])
+		
+		@restaurants = Restaurant.display_by_categories(params[:category])
 
 		respond_to do |format|
 			format.html
@@ -78,10 +80,6 @@ class RestaurantsController < ApplicationController
 	      format.json { head :no_content }
 	    end
   	end
-
-  	def search
-  		@restaurant = Restaurant.search(params[:search])
-	end
 
 	def manage_restaurant
 		@users_restaurants = current_user.restaurants 
