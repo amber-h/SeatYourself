@@ -15,8 +15,7 @@
   "markers"     => {"data" => @json }
  }) %></p>
 
-<p>Make a reservation</p>
-<%= link_to "Make a reservation", new_restaurant_reservation_url(@restaurant.id) %>
+<p><%= link_to "Make a reservation", new_restaurant_reservation_url(@restaurant.id) %></p>
 
  <!-- Giving edit privelages to owners of that restaurant only -->
 <% user_isowner = false %>
@@ -34,6 +33,6 @@
 	<% end %>
 	</ul>
 	<p> <%= link_to "Edit Restaurant", edit_restaurant_path %> </p>
-	<%= link_to "Delete", @restaurant, :confirm => "Are you sure you want to delete this restaurant?", :method => :delete %>
+	<p><%= link_to "Delete", @restaurant, :confirm => "Are you sure you want to delete this restaurant?", :method => :delete %></p>
 <% end %>
 

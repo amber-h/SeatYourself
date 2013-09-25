@@ -3,7 +3,7 @@
 	
 
 	<div class="outer-search-form">
-		<h1>Find a Restaurant</h1>
+		<div class="red-text">Find a Restaurant</div>
 	<%= form_tag restaurants_path, :method => 'get', :class => 'search-form' do %>
 	  	<p>
 	    <%= text_field_tag :search, params[:search] %>
@@ -33,13 +33,13 @@
 </ul>
 
 <%= form_tag({}, {:method => :get}) do %>
-	<div id="rightnav">
+	<!-- <div id="rightnav"> -->
 	 <% for category in Category.all %>
 	    <div>
 	      <%= check_box_tag "category[]", category.id %>
 	      <%= category.cuisine %>
 	 <%end%>
-	</div>
-	<%= submit_tag %>
+	<!-- </div>
+ -->	<%= submit_tag %>
 <% end %>
 

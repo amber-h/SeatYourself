@@ -24,6 +24,7 @@ time, mark, audio, video {
 }
 
 h1, h2, h3, p {
+	
 	font-family: 'Prosto One', cursive;
 	/*font-family: 'Bubbler One', sans-serif;*/
 	/*font-family: Tahoma;*/
@@ -37,7 +38,8 @@ html, body{
 h1{
 	font-size: 1.5em;
 	padding: 2px;
-	color: #3399FF;
+	color: #CC6666;
+	/*color: #3399FF;*/
 	/*color: #ed0977 !important;*/
 }
 
@@ -62,19 +64,25 @@ p{
 
 a:link, :visited{
 	text-decoration: none;
-	color: #3399FF;
+	color: #CC6666;
+	/*color: #3399FF;*/
 }
 
 a:hover{
 	text-decoration: none;
-	color: #3366FF;
+	color: #CC3366;
 }
 
 ul{
 	list-style-type: none;
 }
 
-
+.red-text{
+	font-family: 'Prosto One', cursive;
+	font-size: 2.0em;
+	padding: 2px;
+	color: #CC3366;
+}
 
  
 #container
@@ -121,7 +129,6 @@ padding: 1em;
 {
 float: right;
 width: 300px;
-
 margin: 0;
 padding: 35px;
 }
@@ -179,13 +186,11 @@ position: fixed;
 
 .outer-search-form{
 	width: 560px;
-	background-color: #33CCFF;
+	/*background-color: #FFFF99;*/
 	box-shadow: -5px -5px 5px #888;
 	margin: 20px;
 	border-radius: 15px;
 	clear: left;
-	/*top: 50%;*/
-	/*margin-top: -50px;*/
 	padding-left: 10px;
 }
 
