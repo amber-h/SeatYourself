@@ -1,8 +1,9 @@
 
 
-	<h1>Find a Restaurant</h1>
+	
 
 	<div class="outer-search-form">
+		<h1>Find a Restaurant</h1>
 	<%= form_tag restaurants_path, :method => 'get', :class => 'search-form' do %>
 	  	<p>
 	    <%= text_field_tag :search, params[:search] %>
