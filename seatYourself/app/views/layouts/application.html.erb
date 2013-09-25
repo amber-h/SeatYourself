@@ -13,19 +13,18 @@
 	
 	
 	<div id="top">
-		 <%= link_to '<h1> Seat Yourself </h1>'.html_safe, restaurants_path %>
 
-	     <p>
+	   	<div id="signed-in-as">
 	      <% if current_user %>
-	        Signed in as <%= current_user.first_name %>. <%= link_to "Log out", session_path("current"), :method => :delete %>
-	        <%= link_to "Manage Reservation(s)", reservations_manage_path %>
-	        	<% if current_user.role == 'owner' %>
-	        	<%= link_to "Manage Restaurant(s)", restaurants_manage_path %>
-	        	<% end %>
+	        <p>Signed in as <%= current_user.first_name %>.
+	        <%= link_to "Log out", session_path("current"), :method => :delete %> </p>
 	      <% else %>
-	        <%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
+	         <p><%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %></p>
 	      <% end %>
-	    </p>
+		</div>
+	   
+
+	    <%= link_to '<h1> Seat Yourself </h1>'.html_safe, restaurants_path %>
 	</div>
 
 	<div id="container">
@@ -35,16 +34,20 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
 </p>
 </div> -->
 		<div id="rightnav">
-			<p>
-			</p>
+				<% if current_user %>
+		        	<p><%= link_to "Manage Reservations", reservations_manage_path %></p>
+		        	<% if current_user.role == 'owner' %>
+		        	<p><%= link_to "Manage Restaurants", restaurants_manage_path %></p>
+		        	<% end %>
+		      	<% else %>
+		        	<%= link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
+		      	<% end %>
 		</div>
 		<div id="content">
 		<!-- <div id="find-restaurant-box">
 
 		</div> -->
-			<h2></h2>
-			<p>
-			</p>
+			
 
 
 		<%= yield %>
