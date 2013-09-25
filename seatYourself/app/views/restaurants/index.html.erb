@@ -1,7 +1,5 @@
 
 
-<!-- <div id="find-restaurant-box"> -->
-
 	<h1>Find a Restaurant</h1>
 
 	<div class="outer-search-form">
@@ -15,16 +13,6 @@
 	<% end %>
 	</div>
 
-	<%#= form_tag restaurants_path, :method => 'get', :class => 'search-form' do %>
-	  	<p>
-	    <%#= text_field_tag :search, params[:search] %>
-		</p>
-		<p>
-	    <%#= submit_tag "Search", :addr => nil %>
-	  	</p>
-	<%# end %>
-
-<!-- </div> -->
 
 
 
@@ -32,7 +20,7 @@
 <li class="restaurant-row">
 	<% @restaurants.each do |restaurant| %>
 		<%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
-		<p><p><%= link_to restaurant[:name], restaurant %> </p>
+		<p><h3><%= link_to restaurant[:name], restaurant %> </h3>
 		<p>Address: <%= restaurant[:addr] %></p> 
 		<p>Phone: <%= restaurant[:phone] %></p>
 		<% restaurant.categories.each do |category| %>
