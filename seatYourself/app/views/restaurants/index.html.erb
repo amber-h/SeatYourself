@@ -1,6 +1,6 @@
 
 
-<div id="find-restaurant-box">
+<!-- <div id="find-restaurant-box"> -->
 
 	<h1>Find a Restaurant</h1>
 
@@ -13,7 +13,7 @@
 	    <%= submit_tag "Search", :name => nil %>
 	  	</p>
 	<% end %>
-
+	</div>
 
 	<%#= form_tag restaurants_path, :method => 'get', :class => 'search-form' do %>
 	  	<p>
@@ -24,23 +24,23 @@
 	  	</p>
 	<%# end %>
 
-	</div>
+<!-- </div> -->
 
 
 
 <ul>
-<div class="restaurant-row">
+<li class="restaurant-row">
 	<% @restaurants.each do |restaurant| %>
+		<%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
 		<p><p><%= link_to restaurant[:name], restaurant %> </p>
 		<p>Address: <%= restaurant[:addr] %></p> 
 		<p>Phone: <%= restaurant[:phone] %></p>
 		<% restaurant.categories.each do |category| %>
 			<p><%= category.cuisine %></p>
 		<% end %>
-		<p><%= image_tag(restaurant[:picture], class: "restaurant_icon") %> 
-		</p>
+		
 	<% end %>
-	</div>
+	</li>
 </ul>
 
 <%= form_tag({}, {:method => :get}) do %>

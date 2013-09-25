@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -59,7 +63,7 @@ p{
  
 #container
 {
-position: relative;
+/*position: relative;*/
 width: 90%;
 margin: 10px auto;
 background-color: #fff;
@@ -69,6 +73,7 @@ line-height: 130%;
 padding: 20px;
 border-radius: 15px;
 margin-top: 100px;
+overflow: hidden;
 }
 
 #top
@@ -80,7 +85,7 @@ border-bottom: 1px solid gray;
 width: 100%;
 margin: 0 auto;
 position: fixed;
-top: 0px;
+top: 0;
 z-index: 1;
 }
 
@@ -102,18 +107,20 @@ padding: 1em;
 {
 float: right;
 width: 160px;
+
 margin: 0;
 padding: 1em;
 }
 
 #content
 {
-margin-left: 200px;
+/*margin-left: 200px;*/
 border-left: 1px solid gray;
-margin-right: 200px;
+/*margin-right: 200px;*/
 border-right: 1px solid gray;
 padding: 1em;
 max-width: 900px;
+float: left;
 }
 
 
@@ -156,9 +163,9 @@ position: fixed;
 
 .outer-search-form{
 	width: 560px;
-	height: 100px;
-	position: absolute;/*
-	background-color: #B3D88C;*/
+	/*height: 100px;*/
+	/*position: absolute;/**/
+	/*background-color: #B3D88C;*/
 	/*background-color: #3399FF;*/
 	background-color: #33CCFF;
 	box-shadow: -5px -5px 5px #888;
@@ -179,7 +186,9 @@ position: fixed;
 
 
 
-/*.restaurant_icon{
+.restaurant_icon{
 	float: right;
+	width: 200px;
 	border: 1px solid black;
-}*/
+	margin-top: 17px;
+}
