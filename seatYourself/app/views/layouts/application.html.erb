@@ -50,13 +50,14 @@ Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh 
 
 		      	<%= form_tag({}, {:method => :get}) do %>
 					 <% for category in Category.all %>
-					    <div>
+					 	<p>
 					      <%= check_box_tag "category[]", category.id %>
 					      <%= category.cuisine %>
+					 	</p>
 					 <%end%>
 						<%= submit_tag %>
 				<% end %>
-		</div>
+						
 		
 	</div>
 
