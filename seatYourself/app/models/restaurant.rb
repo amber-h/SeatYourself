@@ -8,6 +8,18 @@ class Restaurant < ActiveRecord::Base
 
   has_and_belongs_to_many :categories, :join_table => 'categories_restaurants'
 
+	def seats_available
+		 return self.reservations.partySize
+	end
+
+	def self.display_by_categories(category_ids)
+			if category_ids 
+				self.includes(:categories).where('categories.id in (?)', category_ids)
+			else
+				 find(:all)
+			end
+	end
+
 	def self.search(search)
 	  if search
 	    #find(:all, :conditions => ['name LIKE ?', "%#{search}%"])
@@ -16,17 +28,18 @@ class Restaurant < ActiveRecord::Base
 	    find(:all)
 	  end
 	end
-
-	def seats_available
-		 return self.reservations.partySize
-	end
-
-	def self.display_by_categories(category_ids)
-			if category_ids
-				self.includes(:categories).where('categories.id in (?)', category_ids)
-			else
-				 find(:all)
-			end
+	
+	# To search for name as well as display for the category chosen at the same time
+	def self.search_and_category(category_ids,search)
+		if category_ids 
+			self.includes(:categories).where('categories.id in (?)', category_ids)
+		elsif search
+			where('name LIKE ?', "%#{search}%")
+		elsif category_ids && search
+			where('categories.id in (?)', category_ids).where('name LIKE ?', "%#{search}%")
+		else
+			find(:all)
+		end
 	end
 
 	def gmaps4rails_address

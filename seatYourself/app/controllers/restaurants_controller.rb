@@ -9,9 +9,9 @@ class RestaurantsController < ApplicationController
 		#@restaurants = Restaurant.all
 		#@restaurants = Restaurant.search(params[:search])
 		#@restaurants = Restaurant.includes(:categories).where('categories.id in (?)',params[:category])
+		# @restaurants = Restaurant.display_by_categories(params[:category])
 		
-		@restaurants = Restaurant.display_by_categories(params[:category])
-
+		@restaurants = Restaurant.search_and_category(params[:category],params[:search])
 		respond_to do |format|
 			format.html
 			format.json { render json: @restaurants}
