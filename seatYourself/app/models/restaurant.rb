@@ -8,10 +8,6 @@ class Restaurant < ActiveRecord::Base
 
   has_and_belongs_to_many :categories, :join_table => 'categories_restaurants'
 
-	def seats_available
-		 return self.reservations.partySize
-	end
-
 	def self.display_by_categories(category_ids)
 			if category_ids 
 				self.includes(:categories).where('categories.id in (?)', category_ids)
@@ -28,7 +24,7 @@ class Restaurant < ActiveRecord::Base
 	    find(:all)
 	  end
 	end
-	
+
 	# To search for name as well as display for the category chosen at the same time
 	def self.search_and_category(category_ids,search)
 		if category_ids 

@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
   #   session[:user_id] = nil
   end
 
-
-
   helper_method :current_user
 
   def ensure_logged_in
