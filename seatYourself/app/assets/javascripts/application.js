@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
 //= require_tree .
 $(document).ready( function(){ 
-  console.log("hello");
+	
 })
+
