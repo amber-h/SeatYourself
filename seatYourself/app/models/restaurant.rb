@@ -7,6 +7,9 @@ class Restaurant < ActiveRecord::Base
   belongs_to :user
 
   has_and_belongs_to_many :categories, :join_table => 'categories_restaurants'
+  # adding the reviews that has many users
+  has_many :reviews
+  has_many :users, :through => :reviews
 
 	def self.display_by_categories(category_ids)
 			if category_ids 
