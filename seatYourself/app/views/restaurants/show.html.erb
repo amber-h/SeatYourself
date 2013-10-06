@@ -36,3 +36,54 @@
 	<p><%= link_to "Delete", @restaurant, :confirm => "Are you sure you want to delete this restaurant?", :method => :delete %></p>
 <% end %>
 
+<% if current_user %>
+
+  <h3>Reviews</h3>
+
+  <p>Reviews for <%= @restaurant.name %></p>
+
+<div id="review-list">
+  <%= render :partial => "restaurants/reviews" %>
+</div>
+
+ <h4>New Review</h4>
+
+<% if !user_isowner %>
+  <%= form_for([@restaurant, @review], :remote => true) do |f| %>
+    <div id="review-form-errors">
+      <%= render :partial => "/restaurants/review_form_errors" %>
+    </div>
+    <div class="field">
+      <%= f.label :comment %><br />
+      <%= f.text_area :comment %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+<% else %>
+<p> You cannot review your own restaurant<p>
+
+<% end %>
+
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+     $("#new_review")
+        .bind('ajax:beforeSend', function() { # set this code to happen just before the ajax request is made
+          $("input[type='submit']") # make changes to the submit button
+            .val('Saving...') # change the text on the button
+            .attr('disabled', 'disabled'); # disable the button
+        })
+        .bind('ajax:complete', function() {
+          $("input[type='submit']")
+            .val('Create Review')
+            .removeAttr('disabled');
+        });
+  });
+</script>
+
+
+

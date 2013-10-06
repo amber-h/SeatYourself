@@ -1,5 +1,4 @@
 <h1>Manage Restaurants</h1>
-
 	<% if current_user.role == 'owner' %>
 	   <p> <%= link_to "Add Restaurant", new_restaurant_path %> </p>
 	<% end %>

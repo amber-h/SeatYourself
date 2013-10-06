@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
 		#@restaurants = Restaurant.search(params[:search])
 		#@restaurants = Restaurant.includes(:categories).where('categories.id in (?)',params[:category])
 		# @restaurants = Restaurant.display_by_categories(params[:category])
-		
+
 		@restaurants = Restaurant.search_and_category(params[:category],params[:search])
 		respond_to do |format|
 			format.html
@@ -19,6 +19,14 @@ class RestaurantsController < ApplicationController
 	end
 
 	def show
+		@restaurant = Restaurant.find(params[:id])
+
+		@reviews = @restaurant.reviews
+
+		if current_user
+			@review = @restaurant.reviews.build
+		end
+
 		@json = Restaurant.find(params[:id]).to_gmaps4rails do |restaurant, marker|
 		  	marker.infowindow render_to_string(:partial => "/restaurants/infowindow", :locals => { :restaurant => restaurant })
 		    marker.title "#{restaurant.name}"

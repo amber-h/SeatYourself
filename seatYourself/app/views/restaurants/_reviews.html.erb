@@ -1,0 +1,10 @@
+  <% @restaurant.reviews.each do |review| %>
+    <p>
+      <br>
+      <% if review.user != nil %>
+        <em> by <%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize %></em>
+        on: <%= review.created_at %>
+      <% end %>
+      <p><%= review.comment %><p>
+    </p>
+  <% end %>

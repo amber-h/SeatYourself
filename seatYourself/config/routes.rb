@@ -1,4 +1,10 @@
 SeatYourself::Application.routes.draw do
+  get "reviews/show"
+
+  get "reviews/new"
+
+  get "reviews/edit"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   get 'restaurants/manage', to: 'restaurants#manage_restaurant'
@@ -6,6 +12,7 @@ SeatYourself::Application.routes.draw do
 
   resources :restaurants do
     resources :reservations, :only => [:create, :new, :index, :destroy, :edit, :update]   
+    resource :reviews, :except => [:index]
   end
   
   resources :restaurants 
